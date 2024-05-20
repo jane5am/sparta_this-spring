@@ -1,4 +1,4 @@
-//package com.sparta.memo.controller;
+// package com.sparta.memo.controller;
 //
 //import com.sparta.memo.dto.MemoRequestDto;
 //import com.sparta.memo.dto.MemoResponseDto;
@@ -88,23 +88,21 @@ import java.util.List;
 @RequestMapping("/api")
 public class MemoController {
 
-    private final JdbcTemplate jdbcTemplate; //JDBC 템플릿 변수 설정
+    private final MemoService memoService;
 
     public MemoController(JdbcTemplate jdbcTemplate) { //JDBC 템플릿 final이기때문에 초기화
-        this.jdbcTemplate = jdbcTemplate;
+        this.memoService = new MemoService(jdbcTemplate);
     }
 
     @PostMapping("/memos")
     public MemoResponseDto createMemo(@RequestBody MemoRequestDto requestDto) {
 
-        MemoService memoService = new MemoService(jdbcTemplate);
         return memoService.createMemo(requestDto);
     }
 
     @GetMapping("/memos")
     public List<MemoResponseDto> getMemos() {
 
-        MemoService memoService = new MemoService(jdbcTemplate);
         return  memoService.getMemos();
 
 
@@ -113,7 +111,6 @@ public class MemoController {
     @PutMapping("/memos/{id}")
     public Long updateMemo(@PathVariable Long id, @RequestBody MemoRequestDto requestDto) {
 
-        MemoService memoService = new MemoService(jdbcTemplate);
         return memoService.updateMemo(id,requestDto);
 
     }
@@ -121,7 +118,6 @@ public class MemoController {
     @DeleteMapping("/memos/{id}")
     public Long deleteMemo(@PathVariable Long id) {
 
-        MemoService memoService = new MemoService(jdbcTemplate);
         return  memoService.deleteMemo(id);
 
     }
