@@ -22,6 +22,10 @@ repositories {
 }
 
 dependencies {
+    // MySQL
+    implementation 'mysql:mysql-connector-java:8.0.28' //mySQL 드라이버 가져오기
+    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+    
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     compileOnly 'org.projectlombok:lombok'
